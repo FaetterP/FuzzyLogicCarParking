@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Fuzzy
 {
-    class Math
+    class FMath
     {
         public static double OR(double p, params IFuzzySet[] sets)
         {
