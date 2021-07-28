@@ -7,5 +7,6 @@ namespace Assets.Fuzzy
 {
     interface IFuzzySet
     {
+        double GetValueInPoint(double p);
     }
 }
