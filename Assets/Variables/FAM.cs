@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Assets.Variables
 {
-    class FAM 
+    class FAM
     {
-        private IFuzzySet[,] AMatrix;
+        public IFuzzySet[,] AMatrix;
         private double[,] weights;
         private IFuzzySet[] result;
         public FAM(IFuzzySet[] result)
@@ -65,12 +65,12 @@ namespace Assets.Variables
 
         public double GetCentroid()
         {
-            double ch = Int(Ch, -30, 30, 0.1);
-            double zn = Int(GetValueInPoint, -30, 30, 0.1);
+            double ch = Int(Ch, -30, 30, Settings.integral_step);
+            double zn = Int(GetValueInPoint, -30, 30, Settings.integral_step);
             return ch / zn;
         }
 
-        Random rnd = new Random();
+        private static Random rnd = new Random();
 
         public void RandomAM(double probability)
         {
@@ -85,5 +85,6 @@ namespace Assets.Variables
                 }
             }
         }
+
     }
 }

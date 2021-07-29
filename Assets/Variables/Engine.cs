@@ -11,7 +11,9 @@ namespace Assets.Variables
     {
         private Variable x;
         private Variable y;
-        private FAM fam;
+        public FAM fam;
+        private bool isDead = false;
+        private bool isReached = false;
 
         void Awake()
         {
@@ -20,12 +22,13 @@ namespace Assets.Variables
             y = new Variable(GetX(Settings.SizeY, Settings.CellY));
 
             fam.SetMatrix(x.GetArrWeightsInPoint(transform.localPosition.x), y.GetArrWeightsInPoint(transform.localPosition.y), true);
-            fam.RandomAM(1);
 
         }
 
         void Update()
         {
+            if (isDead) { return; }
+
             fam.SetMatrix(x.GetArrWeightsInPoint(transform.localPosition.x), y.GetArrWeightsInPoint(transform.localPosition.y), false);
 
             double angle = fam.GetCentroid();
@@ -34,6 +37,11 @@ namespace Assets.Variables
             coords.x += Settings.speed * (float)Math.Cos(transform.localRotation.eulerAngles.z * Math.PI / 180.0);
             coords.y += Settings.speed * (float)Math.Sin(transform.localRotation.eulerAngles.z * Math.PI / 180.0);
             transform.localPosition = coords;
+
+            if(coords.x < -Settings.SizeX / 2 || coords.x > Settings.SizeX / 2 || coords.y < -Settings.SizeY / 2 || coords.y > Settings.SizeY / 2)
+            {
+                isDead = true;
+            }
         }
 
         private IFuzzySet[] GetFAM()
@@ -53,11 +61,23 @@ namespace Assets.Variables
             IFuzzySet[] ret = new IFuzzySet[size/cell];
             for(int i = 0; i < ret.Length; i++)
             {
-                ret[i] = new TriangleSet((i - 1) * cell-size/2, i * cell - size / 2, (i + 1) * cell - size / 2, 0, 1);
+                ret[i] = new TriangleSet((i - 1) * cell - size / 2, i * cell - size / 2, (i + 1) * cell - size / 2, 0, 1);
             }
             return ret;
         }
 
+        public bool isNeedRestart()
+        {
+            return isDead;
+        }
+
+        public double getScore()
+        {
+            double ret = 0;
+            if (isDead) { ret /= Settings.dead_coeff; }
+            if (isReached) { ret *= Settings.reach_coeff; }
+            return ret;
+        }
 
     }
 }
