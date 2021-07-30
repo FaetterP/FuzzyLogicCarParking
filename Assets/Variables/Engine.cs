@@ -1,4 +1,5 @@
-﻿using Assets.Fuzzy;
+﻿using Assets.Constructor;
+using Assets.Fuzzy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace Assets.Variables
         public FAM fam;
         private bool isDead = false;
         private bool isReached = false;
-
+        private double best_dist = int.MaxValue;
+        
         void Awake()
         {
             fam = new FAM(GetFAM());
@@ -27,7 +29,7 @@ namespace Assets.Variables
 
         void Update()
         {
-            if (isDead) { return; }
+            if (isNeedRestart()) { return; }
 
             fam.SetMatrix(x.GetArrWeightsInPoint(transform.localPosition.x), y.GetArrWeightsInPoint(transform.localPosition.y), false);
 
@@ -42,8 +44,16 @@ namespace Assets.Variables
             {
                 isDead = true;
             }
+
+            double curr_dist = FindObjectOfType<Finish>().GetDistance(transform.localPosition);
+            best_dist = Math.Min(curr_dist, best_dist);
+            if (best_dist < Settings.distance_to_finish) { isReached = true; }
         }
 
+        void OnTriggerEnter2D(Collider2D collider)
+        {
+            isDead = true;
+        }
         private IFuzzySet[] GetFAM()
         {
             IFuzzySet[] ret = new IFuzzySet[7];
@@ -68,12 +78,12 @@ namespace Assets.Variables
 
         public bool isNeedRestart()
         {
-            return isDead;
+            return isDead || isReached;
         }
 
         public double getScore()
         {
-            double ret = 0;
+            double ret = 1 / best_dist;
             if (isDead) { ret /= Settings.dead_coeff; }
             if (isReached) { ret *= Settings.reach_coeff; }
             return ret;
