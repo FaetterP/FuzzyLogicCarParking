@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Constructor.Buttons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,7 @@ namespace Assets
         public static double dead_coeff = 50;
         public static double reach_coeff = 50;
         public static double mutation_probability = 0.1;
+
+        public static SpawnedObject SelectedSpawnedObject = SpawnedObject.Empty;
     }
 }

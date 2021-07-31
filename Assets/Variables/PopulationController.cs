@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Variables
 {
@@ -13,15 +14,16 @@ namespace Assets.Variables
         private Engine[] population;
         private bool isNeedRetart;
 
-        void Awake()
+        void Start()
         {
             car_to_create.transform.position = new Vector2(Settings.start_x, Settings.start_y);
             population = new Engine[Settings.size_population];
+
             for (int i = 0; i < population.Length; i++)
             {
                 population[i] = Instantiate(car_to_create, transform);
                 population[i].fam.RandomAM(1);
-            }       
+            }
         }
 
         void Update()
@@ -53,6 +55,9 @@ namespace Assets.Variables
                 Array.Copy(parent_fam.AMatrix, population[i].fam.AMatrix, parent_fam.AMatrix.Length);
                 population[i].fam.RandomAM(Settings.mutation_probability);
             }
+            Array.Copy(parent_fam.AMatrix, population[0].fam.AMatrix, parent_fam.AMatrix.Length);
+            population[0].GetComponent<Image>().color = Color.red;
+            population[0].transform.SetAsLastSibling();
         }
 
         private FAM GetBestFAM()

@@ -10,7 +10,7 @@ namespace Assets
     {
         private LineRenderer frame;
 
-        void Awake()
+        public void PrintField()
         {
             frame = GetComponent<LineRenderer>();
             frame.positionCount = 5;

@@ -1,4 +1,5 @@
-﻿using Assets.Variables;
+﻿using Assets.Constructor.Buttons;
+using Assets.Variables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,14 @@ namespace Assets.Constructor
 
             BoxCollider2D coll = gameObject.AddComponent<BoxCollider2D>();
             coll.isTrigger = true;
+        }
+
+        void OnMouseDown()
+        {
+            if (Settings.SelectedSpawnedObject == SpawnedObject.Delete)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
