@@ -24,5 +24,10 @@ namespace Assets.Variables
             }
             return ret;
         }
+
+        public int GetLength()
+        {
+            return sets.Length;
+        }
     }
 }

@@ -89,5 +89,22 @@ namespace Assets.Variables
             return ret;
         }
 
+        public double[,] getFAMAngles()
+        {
+            double[,] ret = new double[x.GetLength(), y.GetLength()];
+            for (int i = 0; i < x.GetLength(); i++)
+            {
+                for (int j = 0; j < y.GetLength(); j++)
+                {
+                    double[] xarr = new double[x.GetLength()];
+                    xarr[i] = 1;
+                    double[] yarr = new double[y.GetLength()];
+                    yarr[j] = 1;
+                    fam.SetMatrix(xarr, yarr, false);
+                    ret[i, j] = fam.GetCentroid();
+                }
+            }
+            return ret;
+        }
     }
 }

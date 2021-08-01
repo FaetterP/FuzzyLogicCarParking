@@ -58,6 +58,18 @@ namespace Assets.Variables
             Array.Copy(parent_fam.AMatrix, population[0].fam.AMatrix, parent_fam.AMatrix.Length);
             population[0].GetComponent<Image>().color = Color.red;
             population[0].transform.SetAsLastSibling();
+
+            double[,] famAngles = population[0].getFAMAngles();
+            string dbg = "";
+            for (int i = 0; i < famAngles.GetLength(0); i++)
+            {
+                for (int j = 0; j < famAngles.GetLength(1); j++)
+                {
+                    dbg += Math.Round(famAngles[i, j],0) + " ";
+                }
+                dbg += "\n";
+            }
+            Debug.Log(dbg);
         }
 
         private FAM GetBestFAM()

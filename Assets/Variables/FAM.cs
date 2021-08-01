@@ -29,7 +29,7 @@ namespace Assets.Variables
             return values.Max();
         }
 
-        public void SetMatrix(double[] phi, double[] x, bool first)
+        public double[,] SetMatrix(double[] phi, double[] x, bool first)
         {
             if (first)
             {
@@ -43,6 +43,7 @@ namespace Assets.Variables
                     weights[i, j] = phi[i] < x[j] ? phi[i] : x[j];
                 }
             }
+            return weights;
         }
 
         private delegate double function(double x);

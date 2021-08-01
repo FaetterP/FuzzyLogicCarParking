@@ -16,10 +16,6 @@ namespace Assets.Constructor.Buttons
             Settings.start_x = startCoords.x;
             Settings.start_y = startCoords.y;
 
-            //Vector2 finishCoords = FindObjectOfType<Finish>().transform.localPosition;
-            //Settings.start_x = finishCoords.x;
-            //Settings.start_y = finishCoords.y;
-
             controller.enabled = true;
         }
     }
