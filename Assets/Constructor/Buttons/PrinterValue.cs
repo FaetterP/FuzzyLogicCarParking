@@ -16,7 +16,7 @@ namespace Assets.Constructor.Buttons
         void Awake()
         {
             thisSlider = GetComponent<Slider>();
-            thisSlider.onValueChanged.AddListener(delegate { textOnScreen.text = nameOfField + thisSlider.value; });
+            thisSlider.onValueChanged.AddListener(delegate { textOnScreen.text = nameOfField + Math.Round(thisSlider.value, 3); });
             textOnScreen.text = nameOfField + thisSlider.value;
         }
     }

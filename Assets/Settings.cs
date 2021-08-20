@@ -15,8 +15,8 @@ namespace Assets
 
         public static float start_x = 0;
         public static float start_y = 0;
-        public static int speed = 5;
-        public static int distance_to_finish = 20;
+        public static float speed = 5;
+        public static double distance_to_finish = 20;
 
         public static int size_population = 25;
         public static double integral_step = 0.5;
