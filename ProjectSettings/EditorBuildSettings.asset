@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FuzzyScene.unity
+    guid: f83cc120bbb52d943b80aad4cdbb3d5d
+  - enabled: 1
+    path: Assets/main.unity
+    guid: 84d22172b261dee45b7d23627529bd91

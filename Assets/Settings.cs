@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Assets
 {
+    enum FuzzyType { Rectangle, Triangle, Trapezoid, Normal }
     class Settings
     {
         public static int SizeX = 500;
@@ -25,5 +26,12 @@ namespace Assets
         public static double mutation_probability = 0.1;
 
         public static SpawnedObject SelectedSpawnedObject = SpawnedObject.Empty;
+
+        public static FuzzyType FuzzyType;
+        public static double RectangleParam = 25;
+        public static double TriangleParam = 25;
+        public static double TrapezoidParam1 = 25;
+        public static double TrapezoidParam2 = 25;
+        public static double NormalParam = 25;
     }
 }
