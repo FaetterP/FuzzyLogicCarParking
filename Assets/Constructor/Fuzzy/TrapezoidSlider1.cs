@@ -21,14 +21,14 @@ namespace Assets.Constructor.Fuzzy
 
         public void ValueChangeCheck()
         {
-            Settings.FuzzyType = FuzzyType.Triangle;
+            Settings.FuzzyType = FuzzyType.Trapezoid;
             Settings.TrapezoidParam1 = thisSlider.value;
             slider.minValue = thisSlider.value;
             foreach (var line in lines)
             {
                 line.positionCount = 4;
-                line.SetPosition(1, new Vector2(-thisSlider.value * 4, 300));
-                line.SetPosition(2, new Vector2(thisSlider.value * 4, 300));
+                line.SetPosition(1, new Vector2(-thisSlider.value * 2, 300));
+                line.SetPosition(2, new Vector2(thisSlider.value * 2, 300));
             }
         }
 

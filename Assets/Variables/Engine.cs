@@ -71,7 +71,22 @@ namespace Assets.Variables
             IFuzzySet[] ret = new IFuzzySet[size/cell];
             for(int i = 0; i < ret.Length; i++)
             {
-                ret[i] = new TriangleSet((i - 1) * cell - size / 2, i * cell - size / 2, (i + 1) * cell - size / 2, 0, 1);
+                switch (Settings.FuzzyType)
+                {
+                    case FuzzyType.Rectangle:
+                        ret[i] = new RectangleSet( i*cell-Settings.RectangleParam/2 - size / 2, i * cell + Settings.RectangleParam / 2 - size / 2, 0, 1);
+                        break;
+                    case FuzzyType.Triangle:
+                        ret[i] = new TriangleSet(i * cell -Settings.TriangleParam/2 - size / 2, i*cell - size / 2, i * cell + Settings.TriangleParam / 2 - size / 2, 0 ,1);
+                        break;
+                    case FuzzyType.Trapezoid:
+                        ret[i] = new TrapezoidSet(i * cell - Settings.TrapezoidParam2 / 2 - size / 2, i * cell - Settings.TrapezoidParam1 / 2 - size / 2, i * cell + Settings.TrapezoidParam1 / 2 - size / 2, i * cell + Settings.TrapezoidParam2 / 2 - size / 2, 0, 1);
+                        break;
+                    case FuzzyType.Normal:
+                        ret[i] = new NormalSet(i * cell - size / 2, Settings.NormalParam, 1);
+                        break;
+                }
+                
             }
             return ret;
         }

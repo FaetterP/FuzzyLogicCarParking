@@ -27,7 +27,7 @@ namespace Assets
 
         public static SpawnedObject SelectedSpawnedObject = SpawnedObject.Empty;
 
-        public static FuzzyType FuzzyType;
+        public static FuzzyType FuzzyType = FuzzyType.Triangle;
         public static double RectangleParam = 25;
         public static double TriangleParam = 25;
         public static double TrapezoidParam1 = 25;

@@ -25,10 +25,10 @@ namespace Assets.Constructor.Fuzzy
             foreach(var line in lines)
             {
                 line.positionCount = 4;
-                line.SetPosition(0, new Vector2(-thisSlider.value * 4, 0));
-                line.SetPosition(1, new Vector2(-thisSlider.value * 4, 300));
-                line.SetPosition(2, new Vector2(thisSlider.value * 4, 300));
-                line.SetPosition(3, new Vector2(thisSlider.value * 4, 0));
+                line.SetPosition(0, new Vector2(-thisSlider.value * 2, 0));
+                line.SetPosition(1, new Vector2(-thisSlider.value * 2, 300));
+                line.SetPosition(2, new Vector2(thisSlider.value * 2, 300));
+                line.SetPosition(3, new Vector2(thisSlider.value * 2, 0));
             }
         }
 

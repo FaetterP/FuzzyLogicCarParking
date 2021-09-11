@@ -25,9 +25,9 @@ namespace Assets.Constructor.Fuzzy
             foreach (var line in lines)
             {
                 line.positionCount = 3;
-                line.SetPosition(0, new Vector2(-thisSlider.value * 4, 0));
+                line.SetPosition(0, new Vector2(-thisSlider.value * 2, 0));
                 line.SetPosition(1, new Vector2(0, 300));
-                line.SetPosition(2, new Vector2(thisSlider.value * 4, 0));
+                line.SetPosition(2, new Vector2(thisSlider.value * 2, 0));
             }
         }
 
